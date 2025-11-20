@@ -1,1 +1,115 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+/* Tailwind CSS 4 Configuration with Custom Color Palette */
+@theme {
+  /* Custom Color Palette - Parametrizable */
+  --color-primary-50: #fef9e7;
+  --color-primary-100: #fef3cf;
+  --color-primary-200: #fde7a0;
+  --color-primary-300: #ede5b7;
+  --color-primary-400: #d3af37;
+  --color-primary-500: #cc9900;
+  --color-primary-600: #b38700;
+  --color-primary-700: #997300;
+  --color-primary-800: #806000;
+  --color-primary-900: #664d00;
+  
+  --color-secondary-50: #f5e6ff;
+  --color-secondary-100: #ebccff;
+  --color-secondary-200: #d799ff;
+  --color-secondary-300: #c266ff;
+  --color-secondary-400: #9933e6;
+  --color-secondary-500: #4b006e;
+  --color-secondary-600: #3d0058;
+  --color-secondary-700: #2f0043;
+  --color-secondary-800: #21002e;
+  --color-secondary-900: #13001a;
+  
+  --color-neutral-50: #f7f7f7;
+  --color-neutral-100: #e3e3e3;
+  --color-neutral-200: #c8c8c8;
+  --color-neutral-300: #a4a4a4;
+  --color-neutral-400: #818181;
+  --color-neutral-500: #666666;
+  --color-neutral-600: #515151;
+  --color-neutral-700: #434343;
+  --color-neutral-800: #383838;
+  --color-neutral-900: #1a1a1a;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-neutral-50);
+  color: var(--color-neutral-900);
+}
+
+/* Utility Classes */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
