@@ -1,0 +1,213 @@
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm px-4 sm:px-10 lg:px-20 py-3">
+    <div class="flex items-center gap-4 text-[#181611] dark:text-background-light">
+        <div class="size-6 text-primary">
+            <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+            </svg>
+        </div>
+        <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">SmileWell Dental</h2>
+    </div>
+    <div class="hidden md:flex flex-1 justify-end gap-8">
+        <div class="flex items-center gap-9">
+            <a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#services">Services</a>
+            <a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#team">Our Team</a>
+            <a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#testimonials">Testimonials</a>
+            <a class="text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#contact">Contact</a>
+        </div>
+        <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-[#181611] text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity">
+            <span class="truncate">Book an Appointment</span>
+        </button>
+    </div>
+    <button class="md:hidden flex items-center justify-center rounded-lg h-10 w-10 bg-primary/20 text-[#181611] dark:text-background-light">
+        <ng-icon name="solarMenuDotsBold"></ng-icon>
+    </button>
+</header>
+<main class="flex-1">
+    <!-- HeroSection -->
+    <section class="px-4 sm:px-10 lg:px-20 py-10">
+        <div class="@container">
+            <div class="@[480px]:p-4">
+                <div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-start justify-end px-4 pb-10 @[480px]:px-10" style='background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAVhIquF4t-fjYZP6qrk0osnhrb0EziLDUT1vzy0SPOfN_613fKsymCCZJhVuMyBGYDuOnnUVnXpbrGcownCmdF-Ath61VDZx0utBYHsa5Xo4nMgeh6Nrx8UZ_vC3RnB9y2OT-irKQ5dF0wz-NgsGlCZ7FWRwuuSzJgj6TVcKoEtzg0gWqFv2MPI2ck2e7Ci4wSWC-b6doedS0DdF5TTIP4pU3D0Q-YENMpijvSPF1BmPFAQ0JB8iIakdCmAH0mUp_B2o2e1YX6akk");'>
+                    <div class="flex flex-col gap-2 text-left max-w-2xl">
+                        <h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">Your Perfect Smile, Crafted with Care</h1>
+                        <h2 class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">Experience exceptional dental care in a calm and welcoming environment. Our team is committed to helping you achieve and maintain a healthy, beautiful smile.</h2>
+                    </div>
+                    <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-primary text-[#181611] text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em] hover:opacity-90 transition-opacity">
+                        <span class="truncate">Book an Appointment</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section -->
+    <section class="px-4 sm:px-10 lg:px-20 py-10" id="services">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 text-center">Our Services</h2>
+            <p class="text-center text-[#897f61] dark:text-stone-400 max-w-2xl mx-auto mb-8">We offer a wide range of dental services to meet your needs. From routine check-ups to advanced cosmetic procedures, we're here to help you smile with confidence.</p>
+            <div class="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4">
+                <div class="flex flex-1 gap-3 rounded-xl border border-primary/20 bg-white dark:bg-background-dark/50 p-6 flex-col">
+                    <div class="text-primary">
+                        <ng-icon name="solarHealthAndSafetyOutline"></ng-icon>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <h3 class="text-lg font-bold leading-tight">General Dentistry</h3>
+                        <p class="text-[#897f61] dark:text-stone-400 text-sm font-normal leading-normal">Comprehensive check-ups, cleanings, and preventative care.</p>
+                    </div>
+                </div>
+                <div class="flex flex-1 gap-3 rounded-xl border border-primary/20 bg-white dark:bg-background-dark/50 p-6 flex-col">
+                    <div class="text-primary">
+                        <ng-icon name="solarMagicStick2Outline"></ng-icon>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <h3 class="text-lg font-bold leading-tight">Cosmetic Dentistry</h3>
+                        <p class="text-[#897f61] dark:text-stone-400 text-sm font-normal leading-normal">Transform your smile with veneers, bonding, and crowns.</p>
+                    </div>
+                </div>
+                <div class="flex flex-1 gap-3 rounded-xl border border-primary/20 bg-white dark:bg-background-dark/50 p-6 flex-col">
+                    <div class="text-primary">
+                        <ng-icon name="solarLightbulbMinimalisticOutline"></ng-icon>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <h3 class="text-lg font-bold leading-tight">Teeth Whitening</h3>
+                        <p class="text-[#897f61] dark:text-stone-400 text-sm font-normal leading-normal">Brighten your smile with our professional whitening treatments.</p>
+                    </div>
+                </div>
+                <div class="flex flex-1 gap-3 rounded-xl border border-primary/20 bg-white dark:bg-background-dark/50 p-6 flex-col">
+                    <div class="text-primary">
+                        <ng-icon name="solarSurgicalOutline"></ng-icon>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <h3 class="text-lg font-bold leading-tight">Dental Implants</h3>
+                        <p class="text-[#897f61] dark:text-stone-400 text-sm font-normal leading-normal">A permanent solution for missing teeth that looks and feels natural.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Team Section -->
+    <section class="px-4 sm:px-10 lg:px-20 py-10 bg-white dark:bg-background-dark/50" id="team">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 text-center">Meet Our Expert Team</h2>
+            <p class="text-center text-[#897f61] dark:text-stone-400 max-w-2xl mx-auto mb-8">Our skilled and compassionate team is dedicated to providing you with the highest quality of care. We look forward to meeting you!</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <div class="flex flex-col items-center text-center">
+                    <img class="h-40 w-40 rounded-full object-cover mb-4 border-4 border-primary/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALSx_rE_mdpv6EgRmbDn-DKCWS7914ayyJJQs2GfTd5CCbkFW2HmRaWmmbjb_oY2LX2z1duEmA_qoV5kjv9GrGAtKUHycV4j6zsN6HK_SMl1HzL7xnD5DFS9rPpyoXy9c1xsNTDKgxsdhx_u67rDnYH12mWijgZwlUYpwzjtr2uO2YMr8IUHzXYrFJkv5mo7N0cg2AB10MJknojcA9xCXSQ6BRcSxkrWgwMPX84oJ_EWYXx-egpR9maM5wsa1a1kGD4O-3TOf1nlY" />
+                    <h3 class="text-lg font-bold">Dr. Evelyn Reed</h3>
+                    <p class="text-primary text-sm font-medium">Lead Dentist, DDS</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <img class="h-40 w-40 rounded-full object-cover mb-4 border-4 border-primary/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiWB4_x8HxpPoGsr6G-qeg2-mXMfaJx6Pf-i5Rg588t9N241V54jc0ZZKOfnM7lSnOYlEihwTL_rPUQVwCFFWy1s4yXUk7d1p6QHcuDxHpF2xLjd-aurcPBzcvK9nHqh8YhUIYSE17w0sxN-9ZEd7sv19QuLwbj3s1W9P1UFmEwwT-x5A2MlVdHzxbxjM8D0Be0nhYnPuUtFY9HuuaVQMcxyxSX1vBIg_ILeHh4QeLWD-4m5t7e1JoltbU6I9-0LYpbGZJoSmLtl4" />
+                    <h3 class="text-lg font-bold">Dr. Samuel Chen</h3>
+                    <p class="text-primary text-sm font-medium">Orthodontist</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <img class="h-40 w-40 rounded-full object-cover mb-4 border-4 border-primary/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOtQEoOrj2igTFE15-btIWcJRY6ayXJ8JeG5imBDYGdhclZsUlJfd1nIQ-PrJpW06rTHfSCqAtC7p1qmvKsupyqmnquOdDP-vnD-yfixibie9jgNsGTn8g8Lq4kgP1HeYB-J0v--JHyY4IXehKNNAIJ7b-DxXEI0DXl0wAfwNLupdYF9vqAQ9hrYyOkrhp5x2K838WKi96MpcxMgFgrjF97-AVJZ4smZUrJRxzMvOTx-YnCtaLK42rwf4fIrkbiIZVY3hbx_ohtiI" />
+                    <h3 class="text-lg font-bold">Maria Rodriguez</h3>
+                    <p class="text-primary text-sm font-medium">Dental Hygienist, RDH</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonials Section -->
+    <section class="px-4 sm:px-10 lg:px-20 py-10" id="testimonials">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 text-center">What Our Patients Say</h2>
+            <p class="text-center text-[#897f61] dark:text-stone-400 max-w-2xl mx-auto mb-8">We're proud to have created a positive and comfortable experience for our patients. Here's what they have to say about their visits.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="flex flex-col gap-4 rounded-xl border border-primary/20 bg-white dark:bg-background-dark/50 p-6">
+                    <div class="flex text-primary">
+                        <ng-icon name="solarStarBold"></ng-icon>
+                        <ng-icon name="solarStarBold"></ng-icon>
+                        <ng-icon name="solarStarBold"></ng-icon>
+                        <ng-icon name="solarStarBold"></ng-icon>
+                        <ng-icon name="solarStarBold"></ng-icon>
+                    </div>
+                    <blockquote class="text-[#181611] dark:text-background-light italic">"The best dental experience I've ever had. The team is incredibly friendly and professional. I felt completely at ease from the moment I walked in."</blockquote>
+                    <p class="font-bold">- Sarah J.</p>
+                </div>
+                <div class="flex flex-col gap-4 rounded-xl border border-primary/20 bg-white dark:bg-background-dark/50 p-6">
+                    <div class="flex text-primary">
+                        <ng-icon name="solarStarBold"></ng-icon>
+                        <ng-icon name="solarStarBold"></ng-icon>
+                        <ng-icon name="solarStarBold"></ng-icon>
+                        <ng-icon name="solarStarBold"></ng-icon>
+                        <ng-icon name="solarStarBold"></ng-icon>
+                    </div>
+                    <blockquote class="text-[#181611] dark:text-background-light italic">"Dr. Reed is a true artist! My cosmetic work looks so natural, and I can't stop smiling. I highly recommend SmileWell Dental to everyone."</blockquote>
+                    <p class="font-bold">- Michael B.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section class="px-4 sm:px-10 lg:px-20 py-10 bg-white dark:bg-background-dark/50" id="contact">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 text-center">Get In Touch</h2>
+            <p class="text-center text-[#897f61] dark:text-stone-400 max-w-2xl mx-auto mb-8">Have questions or ready to schedule your visit? Contact us today. Our friendly team is ready to assist you.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-1" for="name">Name</label>
+                            <input class="w-full rounded-lg border-primary/20 bg-background-light dark:bg-background-dark focus:ring-primary focus:border-primary" id="name" name="name" type="text" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1" for="email">Email</label>
+                            <input class="w-full rounded-lg border-primary/20 bg-background-light dark:bg-background-dark focus:ring-primary focus:border-primary" id="email" name="email" type="email" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1" for="phone">Phone</label>
+                            <input class="w-full rounded-lg border-primary/20 bg-background-light dark:bg-background-dark focus:ring-primary focus:border-primary" id="phone" name="phone" type="tel" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1" for="message">Message</label>
+                            <textarea class="w-full rounded-lg border-primary/20 bg-background-light dark:bg-background-dark focus:ring-primary focus:border-primary" id="message" name="message" rows="4"></textarea>
+                        </div>
+                        <button class="flex w-full min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-[#181611] text-base font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity" type="submit">
+                            <span class="truncate">Send Message</span>
+                        </button>
+                    </form>
+                </div>
+                <div class="flex flex-col">
+                    <div class="aspect-video w-full rounded-xl overflow-hidden">
+                        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDOEAsguAMkDBoxjwModo0EbPR2oZ11937WISd7Ip8tNWYulAUvr6WXKkkO8XTqFT5ssWlBvwOgxbtGvuUw-NRteqaLINAM0scZUmKNmZAnaJEcmBgz5sFN6wUjPTxUfkglTeY_nhVHxngqU6ZdPfK0bSogJ5LyuUZPEa9I0XJ4VDkur-DJlYpFrLaBD_zv8c_53ADqQqf78WBndUtjMvTATKSIeNaG_JOtKkKrViekcuXMnZvapWQEGVt5xL_YSx62zQbjjJoiAc" />
+                    </div>
+                    <div class="mt-6 space-y-3">
+                        <div class="flex items-start gap-3">
+                            <ng-icon class="text-primary mt-1" name="solarMapPointOutline"></ng-icon>
+                            <div>
+                                <p class="font-bold">Address</p>
+                                <p class="text-[#897f61] dark:text-stone-400">123 Smile Street, Suite 100, San Francisco, CA 94123</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <ng-icon class="text-primary mt-1" name="solarPhoneCallingOutline"></ng-icon>
+                            <div>
+                                <p class="font-bold">Phone</p>
+                                <p class="text-[#897f61] dark:text-stone-400">(123) 456-7890</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <ng-icon class="text-primary mt-1" name="solarClockCircleOutline"></ng-icon>
+                            <div>
+                                <p class="font-bold">Opening Hours</p>
+                                <p class="text-[#897f61] dark:text-stone-400">Mon - Fri: 8:00 AM - 5:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- Footer -->
+<footer class="px-4 sm:px-10 lg:px-20 py-10 bg-white dark:bg-background-dark/50 border-t border-primary/20">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4">
+        <p class="text-sm text-[#897f61] dark:text-stone-400">© 2024 SmileWell Dental. All Rights Reserved.</p>
+        <div class="flex gap-4">
+            <a class="text-sm text-[#897f61] dark:text-stone-400 hover:text-primary dark:hover:text-primary transition-colors" href="#">Privacy Policy</a>
+            <a class="text-sm text-[#897f61] dark:text-stone-400 hover:text-primary dark:hover:text-primary transition-colors" href="#">Terms of Service</a>
+        </div>
+    </div>
+</footer>

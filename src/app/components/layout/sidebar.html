@@ -1,22 +1,39 @@
-<aside class="sidebar" [class.sidebar-open]="isOpen">
-  <nav class="sidebar-nav">
-    @for (item of navItems; track item.route) {
-      <a 
-        [routerLink]="item.route" 
-        routerLinkActive="nav-item-active"
-        class="nav-item"
-      >
-        <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path [attr.d]="getIcon(item.icon)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="nav-label">{{ item.label }}</span>
-      </a>
-    }
-  </nav>
-  
-  <div class="sidebar-footer">
-    <div class="version-info">
-      <p>Version 1.0.0</p>
+<aside class="w-64 flex-shrink-0 bg-white dark:bg-black/20 border-r border-gray-200 dark:border-white/10 p-4 flex flex-col">
+  <div class="flex flex-col gap-4">
+    <div class="flex items-center gap-3">
+      <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" [style.backgroundImage]="'url(' + currentUser?.avatarUrl + ')'"></div>
+      <div class="flex flex-col">
+        <h1 class="text-gray-900 dark:text-white text-base font-medium leading-normal">{{ currentUser?.name }}</h1>
+        <p class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">{{ currentUser?.email }}</p>
+      </div>
     </div>
+    <div class="flex flex-col gap-2 mt-6">
+      <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10" routerLink="/dashboard">
+        <ng-icon name="solarDashboardOutline" class="text-lg"></ng-icon>
+        <p class="text-sm font-medium leading-normal">Dashboard</p>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10" routerLink="/appointments">
+        <ng-icon name="solarCalendarMonthOutline" class="text-lg"></ng-icon>
+        <p class="text-sm font-medium leading-normal">Appointments</p>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10" routerLink="/payments" routerLinkActive="bg-primary/20 text-primary">
+        <ng-icon name="solarReceiptLongOutline" class="text-lg"></ng-icon>
+        <p class="text-sm font-medium leading-normal">Payment History</p>
+      </a>
+      <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10" href="#">
+        <ng-icon name="solarUserOutline" class="text-lg"></ng-icon>
+        <p class="text-sm font-medium leading-normal">Profile</p>
+      </a>
+    </div>
+  </div>
+  <div class="flex flex-col gap-1 mt-auto pt-6">
+    <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10" href="#">
+      <ng-icon name="solarSettingsOutline" class="text-lg"></ng-icon>
+      <p class="text-sm font-medium leading-normal">Settings</p>
+    </a>
+    <a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10" href="#">
+      <ng-icon name="solarLogoutOutline" class="text-lg"></ng-icon>
+      <p class="text-sm font-medium leading-normal">Log out</p>
+    </a>
   </div>
 </aside>

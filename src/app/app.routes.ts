@@ -3,8 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
-    pathMatch: 'full'
+    loadComponent: () => import('./features/landing/landing').then(m => m.LandingComponent)
   },
   {
     path: 'dashboard',
@@ -20,7 +19,7 @@ export const routes: Routes = [
   },
   {
     path: 'appointments',
-    loadComponent: () => import('./features/dashboard/dashboard').then(m => m.DashboardComponent) // Placeholder
+    loadComponent: () => import('./features/appointments/appointments').then(m => m.AppointmentsComponent)
   },
   {
     path: 'treatments',
@@ -32,7 +31,7 @@ export const routes: Routes = [
   },
   {
     path: 'payments',
-    loadComponent: () => import('./features/dashboard/dashboard').then(m => m.DashboardComponent) // Placeholder
+    loadComponent: () => import('./features/payment-history/payment-history').then(m => m.PaymentHistoryComponent)
   },
   {
     path: 'inventory',

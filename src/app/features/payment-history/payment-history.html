@@ -1,0 +1,72 @@
+<div class="layout-content-container flex flex-col max-w-7xl mx-auto flex-1 p-6 sm:p-8 md:p-10">
+    <!-- PageHeading -->
+    <div class="flex flex-wrap justify-between gap-4 items-center mb-8">
+        <div class="flex flex-col gap-1">
+            <p class="text-gray-900 dark:text-white text-3xl font-bold leading-tight tracking-tight">Payment History</p>
+            <p class="text-gray-500 dark:text-gray-400 text-base font-normal leading-normal">View and manage your transaction history.</p>
+        </div>
+    </div>
+    <!-- Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-black/20 border border-gray-200 dark:border-white/10">
+            <p class="text-gray-600 dark:text-gray-300 text-base font-medium leading-normal">Total Billed</p>
+            <p class="text-gray-900 dark:text-white tracking-light text-3xl font-bold leading-tight">{{ totalBilled | currency }}</p>
+        </div>
+        <div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-black/20 border border-gray-200 dark:border-white/10">
+            <p class="text-gray-600 dark:text-gray-300 text-base font-medium leading-normal">Total Paid</p>
+            <p class="text-gray-900 dark:text-white tracking-light text-3xl font-bold leading-tight">{{ totalPaid | currency }}</p>
+        </div>
+    </div>
+    <!-- SearchBar -->
+    <div class="mb-6">
+        <label class="flex flex-col w-full">
+            <div class="flex w-full flex-1 items-stretch rounded-lg">
+                <div class="text-gray-500 dark:text-gray-400 flex bg-white dark:bg-black/20 border border-gray-200 dark:border-white/10 items-center justify-center pl-4 rounded-l-lg border-r-0">
+                    <ng-icon name="solarMagniferOutline" class="text-lg"></ng-icon>
+                </div>
+                <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-gray-900 dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-200 dark:border-white/10 bg-white dark:bg-black/20 focus:border-primary/50 h-12 placeholder:text-gray-500 dark:placeholder:text-gray-400 px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search by service or date..." (input)="onSearch($event)" />
+            </div>
+        </label>
+    </div>
+    <!-- Table -->
+    <div class="@container">
+        <div class="flex overflow-hidden rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-black/20">
+            <table class="w-full">
+                <thead class="bg-gray-50 dark:bg-white/5">
+                    <tr>
+                        <th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 w-[15%] text-xs font-medium uppercase tracking-wider">Date</th>
+                        <th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 w-[40%] text-xs font-medium uppercase tracking-wider">Service Rendered</th>
+                        <th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 w-[15%] text-xs font-medium uppercase tracking-wider">Amount</th>
+                        <th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 w-[15%] text-xs font-medium uppercase tracking-wider">Status</th>
+                        <th class="px-4 py-3 text-left text-gray-600 dark:text-gray-300 w-[15%] text-xs font-medium uppercase tracking-wider">Invoice</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 dark:divide-white/10">
+                    @for (payment of filteredPayments; track payment.id) {
+                        <tr class="hover:bg-gray-50 dark:hover:bg-white/5">
+                            <td class="h-[72px] px-4 py-2 text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">{{ payment.date | date: 'mediumDate' }}</td>
+                            <td class="h-[72px] px-4 py-2 text-gray-800 dark:text-gray-200 text-sm font-medium leading-normal">{{ payment.treatment?.name }}</td>
+                            <td class="h-[72px] px-4 py-2 text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">{{ payment.amount | currency }}</td>
+                            <td class="h-[72px] px-4 py-2 text-sm font-normal leading-normal">
+                                <div class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium" [ngClass]="{
+                                    'bg-paid/10 text-paid': payment.status === 'Paid',
+                                    'bg-pending/10 text-pending': payment.status === 'Pending'
+                                }">
+                                    <span class="size-1.5 rounded-full" [ngClass]="{
+                                        'bg-paid': payment.status === 'Paid',
+                                        'bg-pending': payment.status === 'Pending'
+                                    }"></span> {{ payment.status }}
+                                </div>
+                            </td>
+                            <td class="h-[72px] px-4 py-2">
+                                <button class="flex items-center gap-2 text-sm font-semibold leading-normal text-primary hover:text-primary/80">
+                                    <ng-icon name="solarDownloadOutline" class="text-base"></ng-icon> Download
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
