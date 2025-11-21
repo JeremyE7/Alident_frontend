@@ -2,12 +2,13 @@
  * Main Layout Component
  */
 
-import { Component, signal, OnInit, inject } from '@angular/core';
+import { Component, signal, OnInit, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { HeaderComponent } from './header';
 import { SidebarComponent } from './sidebar';
 import gsap from 'gsap';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-main-layout',
@@ -17,8 +18,16 @@ import gsap from 'gsap';
 })
 export class MainLayoutComponent implements OnInit {
   protected sidebarOpen = signal(true);
+  protected showLayout = signal(true);
+  private router = inject(Router);
 
   ngOnInit(): void {
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.showLayout.set(event.urlAfterRedirects !== '/');
+    });
+
     // Initial animation
     gsap.from('.main-layout', {
       opacity: 0,

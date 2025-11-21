@@ -1,0 +1,92 @@
+<main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Page Heading -->
+    <div class="flex flex-wrap justify-between items-center gap-4 mb-8">
+        <div class="flex flex-col gap-1">
+            <p class="text-slate-900 dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">Manage Your Appointments</p>
+            <p class="text-slate-500 dark:text-slate-400 text-base font-normal leading-normal">View, reschedule, or book your next visit with ease.</p>
+        </div>
+        <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-slate-900 gap-2.5 text-base font-bold leading-normal tracking-[0.015em] shadow-sm hover:brightness-105 transition-all">
+            <ng-icon name="solarAddCircleOutline"></ng-icon>
+            <span class="truncate">Book a New Appointment</span>
+        </button>
+    </div>
+    <!-- Main Content Area -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Left Column: Calendar & Booking -->
+        <div class="lg:col-span-2 flex flex-col gap-8">
+            <div class="bg-white dark:bg-slate-900/50 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-slate-900 dark:text-white text-xl font-bold">Select a Date</h2>
+                    <div class="flex items-center gap-2">
+                        <button (click)="changeMonth(-1)" class="flex items-center justify-center size-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400">
+                            <ng-icon name="solarAltArrowLeftOutline" class="text-xl"></ng-icon>
+                        </button>
+                        <p class="text-slate-800 dark:text-slate-200 text-base font-bold w-32 text-center">{{ currentMonth | date: 'MMMM y' }}</p>
+                        <button (click)="changeMonth(1)" class="flex items-center justify-center size-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400">
+                            <ng-icon name="solarAltArrowRightOutline" class="text-xl"></ng-icon>
+                        </button>
+                    </div>
+                </div>
+                <!-- Calendar Grid -->
+                <div class="grid grid-cols-7 gap-1 text-center">
+                    @for (day of calendar.weekdays; track day) {
+                        <div class="text-slate-500 dark:text-slate-400 text-sm font-medium py-2">{{ day }}</div>
+                    }
+                    @for (day of calendar.days; track day.date) {
+                        <div
+                            class="cursor-pointer rounded-lg py-2"
+                            [ngClass]="{
+                                'hover:bg-slate-100 dark:hover:bg-slate-800': day.isCurrentMonth,
+                                'text-slate-400 dark:text-slate-600': !day.isCurrentMonth,
+                                'bg-primary text-slate-900 font-bold hover:bg-primary': day.isSelected
+                            }"
+                            (click)="selectDate(day)">
+                            {{ day.date | date: 'd' }}
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- Available Time Slots -->
+            <div class="bg-white dark:bg-slate-900/50 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
+                <h2 class="text-slate-900 dark:text-white text-xl font-bold mb-4">Available Slots for {{ selectedDate | date: 'longDate' }}</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                    @for (slot of availableSlots; track slot) {
+                        <button class="flex items-center justify-center rounded-lg h-10 px-4 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-primary/20 dark:hover:bg-primary/20 hover:text-primary">{{ slot }}</button>
+                    } @empty {
+                        <p class="text-slate-500 dark:text-slate-400">No available slots for this date.</p>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- Right Column: Appointment List -->
+        <div class="lg:col-span-1 flex flex-col gap-6">
+            <div class="bg-white dark:bg-slate-900/50 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
+                <!-- Tabs -->
+                <div class="border-b border-slate-200 dark:border-slate-800 mb-4">
+                    <nav aria-label="Tabs" class="flex -mb-px gap-6">
+                        <a (click)="showUpcoming()" [ngClass]="{'shrink-0 border-b-2 border-primary px-1 pb-2 text-sm font-bold text-primary': showingUpcoming, 'shrink-0 border-b-2 border-transparent px-1 pb-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-700 hover:text-slate-700 dark:hover:text-slate-200': !showingUpcoming}" href="#">Upcoming</a>
+                        <a (click)="showPast()" [ngClass]="{'shrink-0 border-b-2 border-primary px-1 pb-2 text-sm font-bold text-primary': !showingUpcoming, 'shrink-0 border-b-2 border-transparent px-1 pb-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-700 hover:text-slate-700 dark:hover:text-slate-200': showingUpcoming}" href="#">Past</a>
+                    </nav>
+                </div>
+                <!-- Appointment Cards -->
+                <div class="flex flex-col gap-4">
+                    @for (appointment of displayedAppointments; track appointment.id) {
+                        <div class="flex flex-col gap-4 rounded-lg bg-slate-50 dark:bg-slate-900 p-4 border border-slate-200 dark:border-slate-800">
+                            <div class="flex flex-col gap-1">
+                                <p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">{{ appointment.date | date: 'fullDate' }} - {{ appointment.date | date: 'shortTime' }}</p>
+                                <p class="text-slate-900 dark:text-white text-base font-bold leading-tight">{{ appointment.treatment?.name }}</p>
+                                <p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-normal">Scheduled with Dr. {{ appointment.dentist?.firstName }} {{ appointment.dentist?.lastName }}</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button class="flex-1 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-sm font-medium leading-normal hover:bg-slate-300 dark:hover:bg-slate-700">Reschedule</button>
+                                <button class="flex-1 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-transparent text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal hover:bg-slate-200 dark:hover:bg-slate-800">Cancel</button>
+                            </div>
+                        </div>
+                    } @empty {
+                        <p class="text-slate-500 dark:text-slate-400">No appointments to display.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

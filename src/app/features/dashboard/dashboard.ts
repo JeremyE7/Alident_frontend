@@ -2,36 +2,66 @@
  * Dashboard Component
  */
 
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CardComponent } from '../../components/shared/card';
-import gsap from 'gsap';
+import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { NgIconComponent, provideIcons } from '@ng-icons/core';
+import { solarUserOutline, solarCalendarMonthOutline, solarReceiptLongOutline, solarHistoryOutline } from '@ng-icons/solar-icons';
+import { AppointmentService } from '../../services/appointment.service';
+import { PaymentService } from '../../services/payment.service';
+import { AuthService } from '../../services/auth.service';
+import { Appointment } from '../../models/appointment.model';
+import { User } from '../../models/user.model';
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, CardComponent],
+  imports: [CommonModule, RouterModule, NgIconComponent, DatePipe],
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css'
+  styleUrl: './dashboard.css',
+  providers: [
+    provideIcons({
+      solarUserOutline,
+      solarCalendarMonthOutline,
+      solarReceiptLongOutline,
+      solarHistoryOutline
+    })
+  ]
 })
 export class DashboardComponent implements OnInit {
-  protected stats = [
-    { label: 'Pacientes Activos', value: '248', icon: 'users', color: 'primary' },
-    { label: 'Citas Hoy', value: '12', icon: 'calendar', color: 'secondary' },
-    { label: 'Tratamientos', value: '34', icon: 'clipboard', color: 'success' },
-    { label: 'Ingresos Mes', value: '$8,450', icon: 'cash', color: 'warning' }
-  ];
+  private appointmentService = inject(AppointmentService);
+  private paymentService = inject(PaymentService);
+  private authService = inject(AuthService);
+
+  public currentUser: User | null = null;
+  public nextAppointment: Appointment | null = null;
+  public outstandingBalance = 0;
+  public recentActivity = "No recent payments or visits logged.";
 
   ngOnInit(): void {
-    this.animateStats();
+    this.loadDashboardData();
+    this.currentUser = this.authService.user();
   }
 
-  private animateStats(): void {
-    gsap.from('.stat-card', {
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.1,
-      ease: 'power3.out'
-    });
+  private loadDashboardData(): void {
+    forkJoin({
+      appointments: this.appointmentService.getAppointments(),
+      payments: this.paymentService.getPayments()
+    }).pipe(
+      map(data => {
+        const upcomingAppointments = data.appointments.filter(a => new Date(a.date) > new Date());
+        this.nextAppointment = upcomingAppointments.length > 0 ? upcomingAppointments[0] : null;
+
+        const unpaidPayments = data.payments.filter(p => p.status === 'Pending');
+        this.outstandingBalance = unpaidPayments.reduce((acc, p) => acc + p.amount, 0);
+
+        if (data.payments.length > 0) {
+          this.recentActivity = `Last payment on ${new Date(data.payments[0].date).toLocaleDateString()}`;
+        }
+
+        return data;
+      })
+    ).subscribe();
   }
 }

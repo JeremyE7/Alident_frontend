@@ -55,4 +55,17 @@ export class AppointmentService {
   deleteAppointment(id: number): Observable<void> {
     return this.apiService.delete<void>(this.endpoint, id);
   }
+
+  /**
+   * Get available appointment slots for a given date
+   */
+  getAvailableSlots(date: Date): Observable<string[]> {
+    // In a real application, this would make an API call.
+    // For now, it returns a mock list of slots.
+    const mockSlots = ["09:00 AM", "09:30 AM", "10:30 AM", "11:00 AM", "01:00 PM", "01:30 PM", "02:30 PM", "03:00 PM"];
+    return new Observable(observer => {
+      observer.next(mockSlots);
+      observer.complete();
+    });
+  }
 }

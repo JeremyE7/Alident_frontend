@@ -1,81 +1,91 @@
-<div class="dashboard-container">
-  <div class="page-header">
-    <div>
-      <h1 class="page-title">Dashboard</h1>
-      <p class="page-description">Resumen general de tu clínica dental</p>
+<main class="flex w-full flex-1 justify-center px-4 py-8 sm:px-6 lg:px-8">
+    <div class="layout-content-container flex w-full max-w-7xl flex-col gap-8">
+        <div class="flex flex-wrap justify-between gap-3">
+            <div class="flex min-w-72 flex-col gap-2">
+                <p class="text-[#181611] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Welcome back, {{ currentUser?.name }}!</p>
+                <p class="text-[#897f61] dark:text-primary/70 text-base font-normal leading-normal">Here's a summary of your account activity.</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
+            <div class="flex flex-col gap-6 lg:col-span-2">
+                <div class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.2)] bg-white dark:bg-background-dark border border-primary/20 dark:border-primary/30 overflow-hidden">
+                    <div class="w-full bg-center bg-no-repeat aspect-[3/1] bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCFWJaJ-vb25xgGXVgmlHVoYH3YzADGV934NSQOggUoqd7_bSY5YylTXxcQ-N9kvHKOJGzvOBZW0j9S8o4CY0j9k5rnNNpT4lIGKpl5umUGxi9EuTrMWf3kkwNpYfrz0iIeOXl_G_gVBoO4bNdmYfSi5nG7OcK9UFAmCTKLfTwhbblhoVtc9U1lvr25De9Iqg3piROMNSFd6JNGn_lPP3NfOyU4R33Ad__V8DBzMlV8bZi67fMOjiubZZeVPgi5U4qdBVwI6UYAjPA");'></div>
+                    <div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-3 p-6">
+                        <p class="text-[#897f61] dark:text-primary/70 text-sm font-normal leading-normal">Next Appointment</p>
+                        @if (nextAppointment) {
+                            <p class="text-[#181611] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">{{ nextAppointment.treatment?.name }}</p>
+                            <div class="flex flex-wrap items-end gap-4 justify-between">
+                                <div class="flex flex-col gap-1">
+                                    <div class="flex items-center gap-2 text-[#897f61] dark:text-primary/70 text-base font-normal leading-normal">
+                                        <ng-icon name="solarUserOutline" class="text-lg"></ng-icon>
+                                        <span>with Dr. {{ nextAppointment.dentist?.firstName }} {{ nextAppointment.dentist?.lastName }}</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-[#897f61] dark:text-primary/70 text-base font-normal leading-normal">
+                                        <ng-icon name="solarCalendarMonthOutline" class="text-lg"></ng-icon>
+                                        <span>{{ nextAppointment.date | date: 'fullDate' }} at {{ nextAppointment.date | date: 'shortTime' }}</span>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#f4f3f0] dark:bg-primary/20 text-[#181611] dark:text-white text-sm font-medium leading-normal">
+                                        <span class="truncate">Reschedule</span>
+                                    </button>
+                                    <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-[#181611] dark:text-background-dark text-sm font-bold leading-normal">
+                                        <span class="truncate">View Details</span>
+                                    </button>
+                                </div>
+                            </div>
+                        } @else {
+                            <p class="text-[#181611] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">No upcoming appointments</p>
+                        }
+                    </div>
+                </div>
+                <h2 class="text-[#181611] dark:text-white text-2xl font-bold leading-tight tracking-[-0.015em] pt-4">Your Account</h2>
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <div class="flex flex-col items-stretch justify-between gap-4 rounded-xl bg-white dark:bg-background-dark p-6 shadow-[0_4px_12px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.2)] border border-primary/20 dark:border-primary/30">
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-center gap-2 text-[#181611] dark:text-white">
+                                <ng-icon name="solarReceiptLongOutline" class="text-primary"></ng-icon>
+                                <p class="text-base font-bold leading-tight">Outstanding Payments</p>
+                            </div>
+                            <p class="text-[#897f61] dark:text-primary/70 text-sm font-normal leading-normal">Total amount due: {{ outstandingBalance | currency }} for your last visit.</p>
+                        </div>
+                        <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-[#181611] dark:text-background-dark text-sm font-bold leading-normal w-fit">
+                            <span class="truncate">Pay Now</span>
+                        </button>
+                    </div>
+                    <div class="flex flex-col items-stretch justify-between gap-4 rounded-xl bg-white dark:bg-background-dark p-6 shadow-[0_4px_12px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.2)] border border-primary/20 dark:border-primary/30">
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-center gap-2 text-[#181611] dark:text-white">
+                                <ng-icon name="solarHistoryOutline" class="text-primary"></ng-icon>
+                                <p class="text-base font-bold leading-tight">Recent Activity</p>
+                            </div>
+                            <p class="text-[#897f61] dark:text-primary/70 text-sm font-normal leading-normal">{{ recentActivity }}</p>
+                        </div>
+                        <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#f4f3f0] dark:bg-primary/20 text-[#181611] dark:text-white text-sm font-medium leading-normal w-fit">
+                            <span class="truncate">View History</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <aside class="flex flex-col gap-6 lg:col-span-1">
+                <div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-background-dark p-6 shadow-[0_4px_12px_rgba(0,0,0,0.05)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.2)] border border-primary/20 dark:border-primary/30">
+                    <h3 class="text-[#181611] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Quick Links</h3>
+                    <div class="flex flex-col gap-3">
+                        <a class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-[#181611] dark:text-background-dark text-base font-bold leading-normal tracking-[0.015em]" routerLink="/appointments">
+                            <span class="truncate">Book New Appointment</span>
+                        </a>
+                        <a class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-[#f4f3f0] dark:bg-primary/20 text-[#181611] dark:text-white text-base font-medium leading-normal" href="#">
+                            <span class="truncate">View Appointment History</span>
+                        </a>
+                        <a class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-[#f4f3f0] dark:bg-primary/20 text-[#181611] dark:text-white text-base font-medium leading-normal" routerLink="/payments">
+                            <span class="truncate">View Payment History</span>
+                        </a>
+                        <a class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-[#f4f3f0] dark:bg-primary/20 text-[#181611] dark:text-white text-base font-medium leading-normal" href="#">
+                            <span class="truncate">Update Profile</span>
+                        </a>
+                    </div>
+                </div>
+            </aside>
+        </div>
     </div>
-  </div>
-
-  <div class="stats-grid">
-    @for (stat of stats; track stat.label) {
-      <div class="stat-card" [attr.data-color]="stat.color">
-        <div class="stat-icon" [class]="'stat-icon-' + stat.color">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            @if (stat.icon === 'users') {
-              <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-width="2"/>
-            } @else if (stat.icon === 'calendar') {
-              <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-width="2"/>
-            } @else if (stat.icon === 'clipboard') {
-              <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-width="2"/>
-            } @else if (stat.icon === 'cash') {
-              <path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" stroke-width="2"/>
-            }
-          </svg>
-        </div>
-        <div class="stat-content">
-          <p class="stat-label">{{ stat.label }}</p>
-          <h3 class="stat-value">{{ stat.value }}</h3>
-        </div>
-      </div>
-    }
-  </div>
-
-  <div class="content-grid">
-    <app-card title="Últimas Citas" subtitle="Citas programadas para hoy">
-      <div class="empty-message">
-        <p>No hay citas programadas para hoy</p>
-      </div>
-    </app-card>
-
-    <app-card title="Pacientes Recientes" subtitle="Últimos pacientes registrados">
-      <div class="empty-message">
-        <p>No hay pacientes recientes</p>
-      </div>
-    </app-card>
-  </div>
-
-  <div class="welcome-section">
-    <app-card padding="lg" shadow="lg">
-      <div class="welcome-content">
-        <h2>Bienvenido al Sistema de Gestión Odontológica</h2>
-        <p>Este es un sistema completo para la gestión de tu clínica dental. Navega por las diferentes secciones usando el menú lateral.</p>
-        <div class="features-list">
-          <div class="feature-item">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Gestión completa de pacientes</span>
-          </div>
-          <div class="feature-item">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Calendario de citas integrado</span>
-          </div>
-          <div class="feature-item">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Historias clínicas digitales</span>
-          </div>
-          <div class="feature-item">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Control de pagos y finanzas</span>
-          </div>
-        </div>
-      </div>
-    </app-card>
-  </div>
-</div>
+</main>
